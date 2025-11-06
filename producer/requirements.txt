@@ -1,4 +1,0 @@
-requests==2.31.0
-kafka-python==2.0.2
-pandas==2.1.4
-python-dotenv==1.0.0
