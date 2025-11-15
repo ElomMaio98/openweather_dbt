@@ -36,3 +36,16 @@ def close_database_conn(connection_pool):
     except Exception as e:
         logger.error(f'Erro ao fechar pool: {e}')
 
+def execute_query(connection_pool, dados, hash_mensagem):
+    try:
+        conn = get_connection(connection_pool)
+        cursor = conn.cursor()
+        query = '''INSERT INTO bronze_layer.weather_raw (raw_data, message_hash) 
+        VALUES (%s, %s)'''
+        cursor.execute(query, (dados, hash_mensagem))
+        conn.commit()
+        cursor.close()
+        put_connection(connection_pool, conn)
+    except Exception as e:
+        logger.error(f"Erro ao inserir: {e}")
+        raise 
