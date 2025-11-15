@@ -11,4 +11,3 @@ KAFKA_GROUP_ID = os.getenv('KAFKA_CONSUMER_GROUP', 'weather-consumer-group')
 
 CITIES_CSV_PATH = ('data/list_braziliancities.csv')
 POLLING_INTERVAL_SECONDS = 60
-
