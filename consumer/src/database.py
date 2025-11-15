@@ -1,19 +1,21 @@
 import psycopg2
-from psycopg2 import pool
 import logging
-import time
-from src.config import PGHOST, PGDATABASE, PGPASSWORD,PGPORT,PGUSER
+#from src.config import PGHOST, PGDATABASE, PGPASSWORD,PGPORT,PGUSER
+import os 
+from dotenv import load_dotenv
+
+load_dotenv()
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 def open_database_conn():
     db_configs= {
-        'host': PGHOST,
-        'port': int(PGPORT),
-        'database': PGDATABASE,
-        'user': PGUSER,
-        'password': PGPASSWORD
+        'host': os.getenv('PGHOST'),
+        'port': int(os.getenv('PGPORT')),
+        'database': os.getenv('PGDATABASE'),
+        'user': os.getenv('PGUSER'),
+        'password': os.getenv('PGPASSWORD')
     }
     try:
         connection_pool = psycopg2.pool.SimpleConnectionPool(minconn = 1, maxconn = 10, **db_configs)
