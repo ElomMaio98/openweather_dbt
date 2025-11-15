@@ -2,7 +2,7 @@ from kafka import KafkaConsumer
 import hashlib
 import json
 import logging
-from datetime import datetime
+
 from src.config import KAFKA_GROUP_ID, KAFKA_BOOTSTRAP_SERVERS, KAFKA_TOPIC
 from src.database import open_database_conn, close_database_conn, execute_query
 import psycopg2
